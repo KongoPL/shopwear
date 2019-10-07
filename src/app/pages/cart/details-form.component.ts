@@ -1,16 +1,23 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component( {
 	selector: 'app-details-form',
 	template: `
+	<div *ngIf="this.errors.length > 0">
+		<p>
+			During validation, those errors occured:
+		</p>
+		<ul class="browser-default">
+			<li *ngFor="let error of this.errors">{{error}}</li>
+		</ul>
+	</div>
 	<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 		<div class="row">
 			<div class="input-field col s6">
-				<input id="first_name" type="text" formControlName="name">
+				<input id="first_name" type="text" formControlName="name" class="validate">
 				<label for="first_name">First Name</label>
-				<span *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)" class="helper-text" data-error="wrong" data-success="right"></span>
 			</div>
 			<div class="input-field col s6">
 				<input id="last_name" type="text" formControlName="surname">
@@ -35,8 +42,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<input id="email" type="text" formControlName="email">
-				<label for="street">Email address</label>
+				<input id="email" type="text" formControlName="email" class="validate">
+				<label for="email">Email address</label>
 			</div>
 		</div>
 		<div class="row">
@@ -66,19 +73,17 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
   `,
 	styles: []
 } )
-export class DetailsFormComponent implements OnInit, OnChanges
+export class DetailsFormComponent implements OnInit
 {
 	public form: FormGroup;
+	public errors: string[] = [];
 
 	constructor(
 		private formBuilder: FormBuilder
 	)
 	{
 		this.form = this.formBuilder.group( {
-			name: new FormControl( '', [
-				Validators.required,
-				Validators.minLength( 4 )
-			] ),
+			name: '',
 			surname: '',
 			street: '',
 			postalCode: '',
@@ -95,14 +100,15 @@ export class DetailsFormComponent implements OnInit, OnChanges
 		
 	}
 
-	ngOnChanges()
-	{
-		console.log( this.form );
-	}
-
 
 	onSubmit( data: any )
 	{
-		console.log( data, this.form );
+		this.errors = [];
+
+		if ( data.name == '' )
+			this.errors.push( 'Please fill "First name" field' );
+		else if ( data.name.length < 4 )
+			this.errors.push( 'Name should be at least 4 letters long' );
+
 	}
 }
