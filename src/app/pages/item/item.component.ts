@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Item from 'src/app/data-types/Item';
 import { ApiService } from 'src/app/services/api.service';
-import { CartService } from 'src/app/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component( {
 	selector: 'app-item',

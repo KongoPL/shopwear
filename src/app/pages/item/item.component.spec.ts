@@ -3,17 +3,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ItemComponent } from './item.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { CartService } from 'src/app/cart.service';
-import { RouterTestingModule } from '@angular/router/testing';
+import { CartService } from 'src/app/services/cart.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RouterMock, ActivatedRouteMock } from 'src/test-utils';
 
 describe( 'ItemComponent', () =>
 {
-	let component: ItemComponent,
-		router = new RouterTestingModule(),
-		formBuilder = new FormBuilder(),
-		api = new ApiService(),
-		cart = new CartService( api );
+	let component: ItemComponent;
 	let fixture: ComponentFixture<ItemComponent>;
 
 	beforeEach( async( () =>
@@ -23,18 +19,11 @@ describe( 'ItemComponent', () =>
 			declarations: [ItemComponent],
 			providers: [{
 				provide: Router,
-				useClass: class
-				{
-					navigate = jasmine.createSpy( "navigate" ); navigateByUrl() { } }
+				useClass: RouterMock
 			}, {
-					provide: ActivatedRoute,
-					useClass: class
-					{
-						snapshot = {
-							paramMap: { get: () => 0 }
-						}
-					}
-				}, FormBuilder, ApiService, CartService]
+				provide: ActivatedRoute,
+				useClass: ActivatedRouteMock
+			}, FormBuilder, ApiService, CartService]
 		} )
 			.compileComponents();
 	} ) );

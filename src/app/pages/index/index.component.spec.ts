@@ -1,14 +1,10 @@
 import { async, ComponentFixture, TestBed, } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Directive } from '@angular/core';
 
 import { IndexComponent } from './index.component';
+import { RouterLinkDirectiveMock } from 'src/test-utils';
 
-@Directive( {
-	selector: '[routerLink]'
-} )
-export class RouterLinkDirectiveStub
-{ }
+
 
 
 describe( 'IndexComponent', () =>
@@ -19,8 +15,8 @@ describe( 'IndexComponent', () =>
 	beforeEach( async( () =>
 	{
 		TestBed.configureTestingModule( {
-			declarations: [IndexComponent, RouterLinkDirectiveStub],
-			imports: [RouterTestingModule ]
+			declarations: [IndexComponent, RouterLinkDirectiveMock],
+			imports: [RouterTestingModule]
 		} )
 			.compileComponents();
 	} ) );

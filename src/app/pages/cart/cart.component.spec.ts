@@ -1,20 +1,16 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartComponent } from './cart.component';
-import { CartService } from 'src/app/cart.service';
-import { ApiService } from 'src/app/services/api.service';
+import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterMock } from 'src/test-utils';
 
 @Component( { selector: 'app-details-form', template: '' } )
 class DetailsFormComponent { }
 
 describe( 'CartComponent', () =>
 {
-	let component: CartComponent,
-		router: RouterTestingModule = new RouterTestingModule(),
-		apiService: ApiService = new ApiService(),
-		cartService: CartService = new CartService( apiService );
+	let component: CartComponent;
 	let fixture: ComponentFixture<CartComponent>;
 
 	beforeEach( async( () =>
@@ -26,7 +22,7 @@ describe( 'CartComponent', () =>
 			],
 			providers: [CartService, {
 				provide: Router,
-				useClass: class { navigate = jasmine.createSpy( "navigate" ); }
+				useClass: RouterMock
 			}]
 		} )
 			.compileComponents();
