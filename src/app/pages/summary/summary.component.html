@@ -1,0 +1,11 @@
+<h2>Summary</h2>
+Package will be sent here: 
+<div class="center">
+	{{data.name}} {{data.surname}}<br />
+	{{data.street}}<br />
+	{{data.postalCode}} {{data.city}}<br />
+	<div *ngIf="data.phoneNumber"><b>Phone number:</b> {{data.phoneNumber}}</div>
+	<div *ngIf="data.email"><b>Email address:</b> {{data.email}}</div>
+	<div *ngIf="data.invoiceOnEmail"><b>Invoice will be sent on your email</b></div>
+	<div *ngIf="data.newsletter"><b>Thank you for subscribing our newsletter!</b></div>
+</div>

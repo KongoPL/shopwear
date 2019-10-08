@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from 'src/app/pages/index/index.component';
 import { ItemComponent } from 'src/app/pages/item/item.component';
 import { CartComponent } from 'src/app/pages/cart/cart.component';
+import { SummaryComponent } from 'src/app/pages/summary/summary.component';
 
 
 const routes: Routes = [
 	{ path: '', component: IndexComponent, pathMatch: 'full' },
 	{ path: 'item/:id', component: ItemComponent, pathMatch: 'full' },
 	{ path: 'cart', component: CartComponent, pathMatch: 'full' },
+	{ path: 'summary', component: SummaryComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

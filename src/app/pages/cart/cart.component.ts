@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService, CartItem } from 'src/app/cart.service';
+import { Router } from '@angular/router';
 
 @Component( {
 	selector: 'app-cart',
@@ -10,7 +11,8 @@ export class CartComponent implements OnInit
 	public cartItems: CartItem[];
 
 	constructor(
-		public cart: CartService
+		public cart: CartService,
+		public router: Router
 	) { }
 
 	ngOnInit()
@@ -24,5 +26,11 @@ export class CartComponent implements OnInit
 	updateCart()
 	{
 		this.cartItems = this.cart.cartItems;
+	}
+
+
+	onDetailsGiven( details: object )
+	{
+		this.router.navigateByUrl( 'summary', { state: { data: details } } );
 	}
 }

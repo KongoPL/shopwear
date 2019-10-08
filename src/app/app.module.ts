@@ -8,6 +8,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { ItemComponent } from './pages/item/item.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { DetailsFormComponent } from './pages/cart/details-form.component';
+import { SummaryComponent } from './pages/summary/summary.component';
 
 @NgModule( {
 	declarations: [
@@ -15,7 +16,8 @@ import { DetailsFormComponent } from './pages/cart/details-form.component';
 		IndexComponent,
 		ItemComponent,
 		CartComponent,
-		DetailsFormComponent
+		DetailsFormComponent,
+		SummaryComponent
 	],
 	imports: [
 		FormsModule,
