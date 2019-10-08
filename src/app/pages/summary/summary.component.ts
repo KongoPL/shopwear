@@ -21,7 +21,7 @@ export class SummaryComponent implements OnInit
 	{
 		const state = window.history.state;
 
-		if ( !state.data )
+		if ( !state || !state.data )
 		{
 			this.router.navigateByUrl( '' );
 			return;

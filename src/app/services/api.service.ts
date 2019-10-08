@@ -1,4 +1,4 @@
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import Category from 'src/app/data-types/Category';
 import Item from 'src/app/data-types/Item';
@@ -74,6 +74,14 @@ export class ApiService
 
 	public getItem( id: number )
 	{
-		return of( ApiService.items.find( ( v ) => v.id == id ) );
+		return new Observable<Item>( ( subscriber ) =>
+		{
+			const item = ApiService.items.find( ( v ) => v.id == id );
+
+			if ( item )
+				subscriber.next();
+			else
+				subscriber.error();
+		} );
 	}
 }

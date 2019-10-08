@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Item from 'src/app/data-types/Item';
 import { ApiService } from 'src/app/services/api.service';
@@ -16,6 +16,7 @@ export class ItemComponent implements OnInit
 	public addToCartForm: FormGroup;
 	
 	constructor(
+		private router: Router,
 		private route: ActivatedRoute,
 		private formBuilder: FormBuilder,
 		private api: ApiService,
@@ -31,7 +32,10 @@ export class ItemComponent implements OnInit
 	{
 		const itemId = +this.route.snapshot.paramMap.get( 'id' );
 
-		this.api.getItem( itemId ).subscribe( ( v ) => this.item = v );
+		this.api.getItem( itemId ).subscribe(
+			( v ) => this.item = v,
+			() => this.router.navigateByUrl( '' )
+		);
 	}
 
 
