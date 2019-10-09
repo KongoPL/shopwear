@@ -1,5 +1,5 @@
 <h2>Cart</h2>
-<table clasws="table">
+<table clasws="table" id="cart">
 	<thead>
 		<tr>
 			<th>#</th>
@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let cartItem of this.cartItems; let i = index">
+		<tr *ngFor="let cartItem of this.cartItems; let i = index" class="item">
 			<td>{{+i + 1}}</td>
 			<td>{{cartItem.item.name}}</td>
 			<td>{{cartItem.item.priceFormatted}}</td>

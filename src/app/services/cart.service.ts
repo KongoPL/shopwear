@@ -22,7 +22,7 @@ export class CartService
 
 
 	addItem( item: Item, amount: number = 1 )
-	{
+	 {
 		const cartItem = this.cartItems.find( ( v ) => v.item.id == item.id );
 
 		if ( cartItem )
@@ -30,6 +30,13 @@ export class CartService
 		else
 			this.cartItems.push( { item, amount } );
 
+		this.onCartUpdate.emit();
+	}
+
+
+	clearCart()
+	{
+		this.cartItems = [];
 		this.onCartUpdate.emit();
 	}
 

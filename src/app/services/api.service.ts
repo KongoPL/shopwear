@@ -79,7 +79,7 @@ export class ApiService
 			const item = ApiService.items.find( ( v ) => v.id == id );
 
 			if ( item )
-				subscriber.next();
+				subscriber.next( item );
 			else
 				subscriber.error();
 		} );

@@ -1,15 +1,17 @@
-<nav>
-	<div class="container nav-wrapper">
-		<a routerLink="" class="brand-logo">{{title}}</a>
-		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a routerLink="cart">Cart</a></li>
-		</ul>
-	</div>
-</nav>
+<header id="page">
+	<nav>
+		<div class="container nav-wrapper">
+			<a routerLink="" class="brand-logo">{{title}}</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a routerLink="cart">Cart</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>
 <div class="container">
 	<router-outlet></router-outlet>
 </div>
-<footer class="page-footer">
+<footer id="page" class="page-footer">
 	<div class="container">
 		<div class="row">
 			<div class="col l6 s12">
